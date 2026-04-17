@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Env / secrets
+sentinelops.env
+.env
+.env.local
+*.pem
+*.key
+
+# Data — don't commit corpus
+data/raw/
+data/processed/
+data/warehouse/*.db
+data/warehouse/*.duckdb
+*.parquet
+*.csv
+!evaluation/golden_set/*.csv
+
+# ML artifacts
+wandb/
+mlruns/
+mlartifacts/
+checkpoints/
+*.ckpt
+*.pt
+*.safetensors
+*.gguf
+*.onnx
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Docker / infra
+.volumes/
+volumes/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
+logs/

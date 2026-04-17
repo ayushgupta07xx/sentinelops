@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: sentinelops-local
+    env: dev
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Placeholders — uncommented in Week 4 when FastAPI + agent are up.
+  # - job_name: sentinelops-api
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets: ["host.docker.internal:8000"]
+  #
+  # - job_name: sentinelops-agent
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets: ["host.docker.internal:8001"]
