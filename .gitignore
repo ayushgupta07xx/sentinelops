@@ -57,3 +57,4 @@ volumes/
 # Logs
 *.log
 logs/
+training/classifier/outputs/

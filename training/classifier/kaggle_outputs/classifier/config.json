@@ -1,0 +1,15 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "max_length": 384,
+  "dropout": 0.1,
+  "freeze_layers": 4,
+  "batch_size": 16,
+  "epochs": 25,
+  "learning_rate": 3e-05,
+  "weight_decay": 0.01,
+  "early_stop_patience": 5,
+  "seed": 42,
+  "db_path": "/kaggle/input/datasets/ayushgupta07xx/sentinelops-corpus/corpus.db",
+  "output_dir": "/kaggle/working/classifier",
+  "use_wandb": true
+}
