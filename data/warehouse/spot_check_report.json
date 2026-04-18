@@ -1,0 +1,278 @@
+{
+  "timestamp": "2026-04-18T10:39:31.470567",
+  "n_checked": 30,
+  "n_agree": 24,
+  "agreement_rate": 0.8,
+  "samples": [
+    {
+      "id": "danluu_2ff247cc7465dd0d",
+      "agree": true,
+      "llm": [
+        "P0",
+        "networking"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "github_status_c5fdff7ad90e8df6",
+      "agree": true,
+      "llm": [
+        "P2",
+        "capacity"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "github_status_c2a1c8c3da3cbdc2",
+      "agree": true,
+      "llm": [
+        "P2",
+        "capacity"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "cloudflare_3edabfe4e4a7b81c",
+      "agree": true,
+      "llm": [
+        "P1",
+        "networking"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_7ac4cae8106629c2",
+      "agree": true,
+      "llm": [
+        null,
+        "other"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "cloudflare_3e964c0059892950",
+      "agree": true,
+      "llm": [
+        "P1",
+        "deploy"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_88ca8c9953a9a4c1",
+      "agree": false,
+      "llm": [
+        "P2",
+        "deploy"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_ff9bf02c23504850",
+      "agree": false,
+      "llm": [
+        null,
+        "other"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "cloudflare_46dc77e9e5ec3e67",
+      "agree": true,
+      "llm": [
+        "P1",
+        "networking"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "github_status_644d5a4097eef529",
+      "agree": true,
+      "llm": [
+        "P2",
+        "capacity"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_8990272aa19a7f92",
+      "agree": true,
+      "llm": [
+        "P2",
+        "deploy"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_d60677b31ca35754",
+      "agree": true,
+      "llm": [
+        "P1",
+        "database"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "cloudflare_bc9f06e553840372",
+      "agree": true,
+      "llm": [
+        "P2",
+        "auth"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_43e355626c94df60",
+      "agree": false,
+      "llm": [
+        "P2",
+        "database"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_93330881085e4089",
+      "agree": true,
+      "llm": [
+        null,
+        "other"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_3243208189d2888f",
+      "agree": true,
+      "llm": [
+        "P2",
+        "database"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "github_status_2b69adbd7efeb72c",
+      "agree": false,
+      "llm": [
+        "P2",
+        "auth"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_dd54567f7737bb32",
+      "agree": true,
+      "llm": [
+        null,
+        "other"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_b4157532ff761b5f",
+      "agree": true,
+      "llm": [
+        "P1",
+        "networking"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_03db44babb8358a8",
+      "agree": false,
+      "llm": [
+        "P1",
+        "database"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "cloudflare_71b256a91b264e93",
+      "agree": true,
+      "llm": [
+        null,
+        "auth"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "github_status_c31f498ea6208c12",
+      "agree": false,
+      "llm": [
+        "P2",
+        "auth"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_bab5117882b2e9bc",
+      "agree": true,
+      "llm": [
+        null,
+        "other"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_808585f252011d45",
+      "agree": true,
+      "llm": [
+        "P2",
+        "deploy"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_e8d3e50fd1c97ff7",
+      "agree": true,
+      "llm": [
+        "P1",
+        "database"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_bfb9dec42dea48f9",
+      "agree": true,
+      "llm": [
+        "P2",
+        "deploy"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "github_status_fa988ecf632af8de",
+      "agree": true,
+      "llm": [
+        "P2",
+        "capacity"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "danluu_29dc76a8aa16fa22",
+      "agree": true,
+      "llm": [
+        null,
+        "auth"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "cloudflare_49d431972231e678",
+      "agree": true,
+      "llm": [
+        "P1",
+        "capacity"
+      ],
+      "fixed": null
+    },
+    {
+      "id": "github_status_7e51d3c8cd20a98a",
+      "agree": true,
+      "llm": [
+        "P2",
+        "networking"
+      ],
+      "fixed": null
+    }
+  ]
+}
