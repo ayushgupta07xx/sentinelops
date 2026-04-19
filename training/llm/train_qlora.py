@@ -104,8 +104,32 @@ model.print_trainable_parameters()
 
 # ---------- check for existing checkpoint to resume ----------
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-ckpts = sorted(OUT_DIR.glob("checkpoint-*"), key=lambda p: int(p.name.split("-")[1]))
-resume_from = str(ckpts[-1]) if ckpts else None
+
+def find_latest_checkpoint():
+    roots = [OUT_DIR]
+    if KAGGLE:
+        # any attached prior-version output / dataset that contains a qlora_out folder
+        for p in Path("/kaggle/input").rglob("qlora_out"):
+            roots.append(p)
+    all_ckpts = []
+    for r in roots:
+        all_ckpts.extend(r.glob("checkpoint-*"))
+    if not all_ckpts:
+        return None
+    return sorted(all_ckpts, key=lambda p: int(p.name.split("-")[1]))[-1]
+
+latest = find_latest_checkpoint()
+if latest and latest.parent.resolve() != OUT_DIR.resolve():
+    import shutil
+    dest = OUT_DIR / latest.name
+    if not dest.exists():
+        print(f"Copying prior checkpoint {latest} -> {dest}")
+        shutil.copytree(latest, dest)
+    resume_from = str(dest)
+elif latest:
+    resume_from = str(latest)
+else:
+    resume_from = None
 print(f"Resume from: {resume_from}" if resume_from else "No prior checkpoint; fresh start.")
 
 # ---------- training args ----------
@@ -152,3 +176,15 @@ final_dir = OUT_DIR / "final_adapter"
 trainer.model.save_pretrained(final_dir)
 tok.save_pretrained(final_dir)
 print(f"Saved final adapter to {final_dir}")
+
+# ---------- auto-push to HF Hub on successful completion ----------
+if os.environ.get("HF_TOKEN"):
+    try:
+        from huggingface_hub import HfApi
+        api = HfApi(token=os.environ["HF_TOKEN"])
+        repo_id = "ayushgupta7777/sentinelops-mistral7b-qlora-adapter"
+        api.create_repo(repo_id, exist_ok=True, private=False, repo_type="model")
+        api.upload_folder(folder_path=str(final_dir), repo_id=repo_id, repo_type="model")
+        print(f"✅ Pushed adapter to https://huggingface.co/{repo_id}")
+    except Exception as e:
+        print(f"HF push failed (non-fatal, checkpoint still in /kaggle/working): {e}")
