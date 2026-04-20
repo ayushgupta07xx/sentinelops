@@ -1,0 +1,262 @@
+[
+  {
+    "idx": 0,
+    "source_id": "gitlab_0c351946c5969849",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 0
+      },
+      "section_score": 3,
+      "word_count": 341,
+      "ref_jaccard": 0.141
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 0,
+        "impact": 1,
+        "remediation": 0,
+        "learnings": 0
+      },
+      "section_score": 1,
+      "word_count": 301,
+      "ref_jaccard": 0.396
+    }
+  },
+  {
+    "idx": 1,
+    "source_id": "danluu_8d368ef9604a1bbb",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 463,
+      "ref_jaccard": 0.143
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 0,
+        "impact": 0,
+        "remediation": 1,
+        "learnings": 0
+      },
+      "section_score": 1,
+      "word_count": 569,
+      "ref_jaccard": 0.184
+    }
+  },
+  {
+    "idx": 2,
+    "source_id": "cloudflare_b66363934d24bdb8",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 414,
+      "ref_jaccard": 0.107
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 0,
+        "remediation": 1,
+        "learnings": 0
+      },
+      "section_score": 2,
+      "word_count": 500,
+      "ref_jaccard": 0.223
+    }
+  },
+  {
+    "idx": 3,
+    "source_id": "cloudflare_e3fa1517dee43c20",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 440,
+      "ref_jaccard": 0.135
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 0,
+        "remediation": 1,
+        "learnings": 0
+      },
+      "section_score": 2,
+      "word_count": 544,
+      "ref_jaccard": 0.157
+    }
+  },
+  {
+    "idx": 4,
+    "source_id": "gitlab_0c351946c5969849",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 363,
+      "ref_jaccard": 0.106
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 0,
+        "learnings": 0
+      },
+      "section_score": 2,
+      "word_count": 315,
+      "ref_jaccard": 0.434
+    }
+  },
+  {
+    "idx": 5,
+    "source_id": "cloudflare_e3fa1517dee43c20",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 0,
+        "remediation": 0,
+        "learnings": 0
+      },
+      "section_score": 1,
+      "word_count": 444,
+      "ref_jaccard": 0.117
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 0,
+        "impact": 0,
+        "remediation": 0,
+        "learnings": 0
+      },
+      "section_score": 0,
+      "word_count": 532,
+      "ref_jaccard": 0.17
+    }
+  },
+  {
+    "idx": 6,
+    "source_id": "cloudflare_49d431972231e678",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 424,
+      "ref_jaccard": 0.121
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 0
+      },
+      "section_score": 3,
+      "word_count": 595,
+      "ref_jaccard": 0.154
+    }
+  },
+  {
+    "idx": 7,
+    "source_id": "cloudflare_3edabfe4e4a7b81c",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 417,
+      "ref_jaccard": 0.117
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 0,
+        "remediation": 1,
+        "learnings": 0
+      },
+      "section_score": 2,
+      "word_count": 566,
+      "ref_jaccard": 0.186
+    }
+  },
+  {
+    "idx": 8,
+    "source_id": "danluu_8d368ef9604a1bbb",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 373,
+      "ref_jaccard": 0.141
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 0,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 0
+      },
+      "section_score": 2,
+      "word_count": 469,
+      "ref_jaccard": 0.189
+    }
+  },
+  {
+    "idx": 9,
+    "source_id": "gitlab_0c351946c5969849",
+    "base": {
+      "sections": {
+        "root_cause": 1,
+        "impact": 1,
+        "remediation": 1,
+        "learnings": 1
+      },
+      "section_score": 4,
+      "word_count": 351,
+      "ref_jaccard": 0.1
+    },
+    "awq": {
+      "sections": {
+        "root_cause": 0,
+        "impact": 1,
+        "remediation": 0,
+        "learnings": 0
+      },
+      "section_score": 1,
+      "word_count": 333,
+      "ref_jaccard": 0.283
+    }
+  }
+]
