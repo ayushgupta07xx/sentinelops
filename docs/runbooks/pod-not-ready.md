@@ -5,7 +5,7 @@ severity: critical
 alert_names:
   - UsersServicePodNotReady
   - OrdersServicePodNotReady
-slo: availability (HA requirement: min 2 ready replicas)
+slo: "availability (HA requirement -- min 2 ready replicas)"
 owner: platform-oncall
 last_reviewed: 2026-04
 ---

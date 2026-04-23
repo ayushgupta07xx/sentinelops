@@ -5,7 +5,7 @@ severity: critical
 alert_names:
   - UsersServiceLatencySLOFastBurn
   - OrdersServiceLatencySLOFastBurn
-slo: latency_p999 (users: <250ms, orders: <500ms — higher because orders fans out to 2 upstreams)
+slo: "latency_p999 (users <250ms, orders <500ms -- higher because orders fans out to 2 upstreams)"
 owner: platform-oncall
 last_reviewed: 2026-04
 ---
