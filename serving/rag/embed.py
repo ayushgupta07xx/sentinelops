@@ -121,13 +121,13 @@ def load_postmortems() -> Iterable[dict]:
             if not line.strip():
                 continue
             row = json.loads(line)
-            text = row.get("text") or row.get("chunk") or ""
+            text = row.get("body") or row.get("text") or row.get("chunk") or ""
             if not text:
                 continue
             yield {
                 "text": text,
                 "source_type": "postmortem",
-                "source": row.get("source") or row.get("id") or "unknown",
+                "source": row.get("parent_id") or row.get("id") or row.get("source") or "unknown",
                 "title": row.get("title"),
                 "service": row.get("service"),
                 "severity": row.get("severity"),
