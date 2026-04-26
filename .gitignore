@@ -58,3 +58,4 @@ volumes/
 *.log
 logs/
 training/classifier/outputs/
+.modal_vllm_key.txt

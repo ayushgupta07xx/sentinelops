@@ -15,6 +15,11 @@ Run dev server (from repo root, venv active):
 
 from __future__ import annotations
 
+# Load .env (MODAL_VLLM_BASE_URL / MODAL_VLLM_API_KEY) BEFORE any module that reads them.
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+
 import asyncio
 import json
 from typing import Any
