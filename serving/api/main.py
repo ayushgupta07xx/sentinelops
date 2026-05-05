@@ -22,12 +22,18 @@ load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 import asyncio
 import json
+import time
 from typing import Any
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Response, WebSocket, WebSocketDisconnect
 
 from serving.agent.graph import get_app
 from serving.agent.tools import draft_postmortem
+from serving.api.metrics import (
+    llm_time_to_first_token_seconds,
+    metrics_response,
+    record_llm_call,
+)
 from serving.api.schemas import (
     AlertPayload,
     DraftRequest,
@@ -36,6 +42,12 @@ from serving.api.schemas import (
 )
 
 app = FastAPI(title="SentinelOps", version="0.1.0")
+
+
+@app.get("/metrics")
+def metrics() -> Response:
+    payload, content_type = metrics_response()
+    return Response(content=payload, media_type=content_type)
 
 
 @app.get("/healthz")
@@ -47,7 +59,14 @@ def healthz() -> dict:
 async def triage(alert: AlertPayload) -> TriageResponse:
     # graph.invoke is sync (sentence_transformers + Qdrant calls are blocking);
     # run in a thread so the event loop stays responsive.
+    t0 = time.perf_counter()
     final = await asyncio.to_thread(get_app().invoke, {"alert": alert.model_dump()})
+    record_llm_call(
+        model="sentinelops-mistral7b",
+        endpoint="triage",
+        completion_text=final.get("draft", ""),
+        duration_seconds=time.perf_counter() - t0,
+    )
     return TriageResponse(
         alert=final["alert"],
         runbook_chunks=final.get("runbook_chunks", []),
@@ -59,12 +78,19 @@ async def triage(alert: AlertPayload) -> TriageResponse:
 
 @app.post("/draft-postmortem", response_model=DraftResponse)
 async def draft_endpoint(req: DraftRequest) -> DraftResponse:
+    t0 = time.perf_counter()
     text = await asyncio.to_thread(
         draft_postmortem,
         req.alert,
         req.runbook_chunks,
         req.prom_results,
         req.recent_alerts,
+    )
+    record_llm_call(
+        model="sentinelops-mistral7b",
+        endpoint="draft-postmortem",
+        completion_text=text,
+        duration_seconds=time.perf_counter() - t0,
     )
     return DraftResponse(draft=text)
 
@@ -83,7 +109,14 @@ async def stream(ws: WebSocket) -> None:
         msg = await ws.receive_json()
         alert = msg.get("alert", {})
         graph_app = get_app()
+        t0 = time.perf_counter()
+        first_event_seen = False
         async for event in graph_app.astream({"alert": alert}):
+            if not first_event_seen:
+                llm_time_to_first_token_seconds.labels(endpoint="stream").observe(
+                    time.perf_counter() - t0
+                )
+                first_event_seen = True
             # event shape: {node_name: partial_state_dict}
             for node, partial in event.items():
                 await ws.send_json(

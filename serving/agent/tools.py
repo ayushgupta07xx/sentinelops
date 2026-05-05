@@ -13,9 +13,38 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+from functools import wraps
+from typing import Callable
+
 from serving.rag.rerank import dense_then_rerank
 from serving.inference.vllm_client import chat as vllm_chat
+from serving.api.metrics import (
+    agent_tool_call_total,
+    rag_cache_hits_total,
+    rag_cache_lookups_total,
+)
 
+
+def _count_tool_call(tool_name: str) -> Callable:
+    """Decorator: increments agent_tool_call_total{tool=,outcome=}."""
+    def deco(fn):
+        @wraps(fn)
+        def wrapped(*args, **kwargs):
+            try:
+                result = fn(*args, **kwargs)
+                agent_tool_call_total.labels(tool=tool_name, outcome="success").inc()
+                return result
+            except Exception:
+                agent_tool_call_total.labels(tool=tool_name, outcome="error").inc()
+                raise
+        return wrapped
+    return deco
+
+
+# FIFO cache for runbook search. Query repetition in agent flows is short-window;
+# strict-LRU not worth the complexity. cache_hit_ratio = rate(hits)/rate(lookups).
+_RUNBOOK_CACHE: dict[tuple[str, int], list[dict]] = {}
+_RUNBOOK_CACHE_MAX = 256
 
 POSTMORTEM_SYSTEM_PROMPT = """You are an SRE incident response copilot drafting a postmortem from EVIDENCE ONLY.
 
@@ -52,11 +81,21 @@ Cite which runbook excerpt or alert field supports each non-trivial claim, inlin
 """
 
 
+@_count_tool_call("search_runbooks")
 def search_runbooks(query: str, k: int = 5) -> list[dict]:
-    """Two-stage retrieval, filtered to source_type=runbook."""
-    return dense_then_rerank(query, top_dense=20, top_rerank=k, source_type="runbook")
+    """Two-stage retrieval, filtered to source_type=runbook. FIFO-cached."""
+    rag_cache_lookups_total.inc()
+    key = (query.strip().lower(), k)
+    if key in _RUNBOOK_CACHE:
+        rag_cache_hits_total.inc()
+        return _RUNBOOK_CACHE[key]
+    result = dense_then_rerank(query, top_dense=20, top_rerank=k, source_type="runbook")
+    if len(_RUNBOOK_CACHE) >= _RUNBOOK_CACHE_MAX:
+        _RUNBOOK_CACHE.pop(next(iter(_RUNBOOK_CACHE)))
+    _RUNBOOK_CACHE[key] = result
+    return result
 
-
+@_count_tool_call("query_prometheus")
 def query_prometheus(promql: str) -> dict:
     """MOCK. Returns canned vector. Real impl lands Day 4."""
     return {
@@ -71,7 +110,7 @@ def query_prometheus(promql: str) -> dict:
         "_mock": True,
     }
 
-
+@_count_tool_call("get_recent_alerts")
 def get_recent_alerts(service: str, window: str = "1h") -> list[dict]:
     """MOCK. Returns 2 fake co-firing alerts. Real impl lands Day 5."""
     now = datetime.now(timezone.utc).isoformat()
@@ -113,7 +152,7 @@ def _sanitize_postmortem(text: str, evidence: str) -> str:
 
     return _BRAND_BLOCKLIST.sub(_repl, text)
 
-
+@_count_tool_call("draft_postmortem")
 def draft_postmortem(
     alert: dict,
     runbook_chunks: list[dict],
