@@ -15,7 +15,9 @@ WORKDIR /build
 
 COPY pyproject.toml README.md ./
 COPY serving/ ./serving/
-RUN pip install --upgrade pip && pip install ".[serving]"
+RUN pip install --upgrade pip && \
+    pip install --index-url https://download.pytorch.org/whl/cpu torch && \
+    pip install ".[serving]"
 
 ENV HF_HOME=/opt/cache/huggingface \
     HF_HUB_DOWNLOAD_TIMEOUT=120
