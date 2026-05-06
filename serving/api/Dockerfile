@@ -17,7 +17,8 @@ COPY pyproject.toml README.md ./
 COPY serving/ ./serving/
 RUN pip install --upgrade pip && pip install ".[serving]"
 
-ENV HF_HOME=/opt/cache/huggingface
+ENV HF_HOME=/opt/cache/huggingface \
+    HF_HUB_DOWNLOAD_TIMEOUT=120
 RUN mkdir -p /opt/cache/huggingface && \
     python -c "from sentence_transformers import SentenceTransformer, CrossEncoder; \
 SentenceTransformer('BAAI/bge-small-en-v1.5'); \
