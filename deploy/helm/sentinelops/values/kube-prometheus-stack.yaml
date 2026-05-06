@@ -1,0 +1,50 @@
+# Values overlay for kube-prometheus-stack (umbrella chart).
+# Repo: https://prometheus-community.github.io/helm-charts
+
+prometheus:
+  prometheusSpec:
+    # Discover ServiceMonitors across all namespaces (kind/dev convenience;
+    # tighten with explicit selectors in prod).
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+    retention: 7d
+    resources:
+      requests: { cpu: 100m, memory: 512Mi }
+      limits:   { cpu: "1",  memory: 1Gi }
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
+
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      requests: { cpu: 50m, memory: 64Mi }
+      limits:   { cpu: 200m, memory: 128Mi }
+
+grafana:
+  adminPassword: "admin"  # local kind only; rotate in prod
+  service:
+    type: NodePort
+    nodePort: 30030
+  resources:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits:   { cpu: 500m, memory: 512Mi }
+  # Auto-load dashboards from any ConfigMap labeled grafana_dashboard=1.
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      labelValue: "1"
+      searchNamespace: ALL
+    datasources:
+      enabled: true
+
+nodeExporter:
+  enabled: true
+kubeStateMetrics:
+  enabled: true

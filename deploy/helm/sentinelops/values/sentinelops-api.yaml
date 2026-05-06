@@ -1,0 +1,71 @@
+# Values overlay for the SentinelOps FastAPI service (chart: microservice).
+replicaCount: 1
+
+image:
+  repository: localhost:5001/sentinelops/api
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+logLevel: info
+
+probes:
+  liveness:
+    path: /healthz
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+    failureThreshold: 3
+  readiness:
+    path: /healthz
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 1Gi
+  limits:
+    cpu: "1"
+    memory: 2Gi
+
+securityContext:
+  runAsUser: 1000
+
+terminationGracePeriodSeconds: 30
+
+# Prometheus picks up via ServiceMonitor; kube-prometheus-stack selects monitors
+# by `release` label, so we tag the ServiceMonitor with the kps release name.
+serviceMonitor:
+  enabled: true
+  path: /metrics
+  interval: 30s
+  scrapeTimeout: 10s
+  additionalLabels:
+    release: kube-prometheus-stack
+
+extraEnv:
+  - name: MODAL_VLLM_BASE_URL
+    valueFrom:
+      secretKeyRef: { name: sentinelops-secrets, key: MODAL_VLLM_BASE_URL }
+  - name: MODAL_VLLM_API_KEY
+    valueFrom:
+      secretKeyRef: { name: sentinelops-secrets, key: MODAL_VLLM_API_KEY }
+  - name: QDRANT_URL
+    value: "http://qdrant.sentinelops.svc.cluster.local:6333"
+  - name: QDRANT_API_KEY
+    valueFrom:
+      secretKeyRef: { name: sentinelops-secrets, key: QDRANT_API_KEY }
+  - name: GROQ_API_KEY
+    valueFrom:
+      secretKeyRef: { name: sentinelops-secrets, key: GROQ_API_KEY }
+  - name: HF_HOME
+    value: "/opt/cache/huggingface"
+
+podAnnotations: {}

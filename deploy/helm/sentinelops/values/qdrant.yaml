@@ -1,0 +1,25 @@
+# Values overlay for the upstream qdrant/qdrant Helm chart.
+# Repo: https://qdrant.github.io/qdrant-helm
+# Run `helm show values qdrant/qdrant` after adding the repo to verify keys.
+replicaCount: 1
+
+image:
+  repository: qdrant/qdrant
+  tag: "v1.12.4"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi
+
+persistence:
+  size: 2Gi
+
+service:
+  type: ClusterIP
+
+# Match QDRANT_API_KEY in the sentinelops-secrets Secret.
+apiKey: "localdev"
