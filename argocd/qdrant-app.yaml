@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://qdrant.github.io/qdrant-helm
       chart: qdrant
-      targetRevision: 1.7.0   # verify with: helm search repo qdrant/qdrant
+      targetRevision: 1.17.1   # verify with: helm search repo qdrant/qdrant
       helm:
         releaseName: qdrant
         valueFiles:

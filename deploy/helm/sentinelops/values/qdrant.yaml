@@ -5,7 +5,6 @@ replicaCount: 1
 
 image:
   repository: qdrant/qdrant
-  tag: "v1.12.4"
 
 resources:
   requests:
