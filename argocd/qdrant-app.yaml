@@ -22,6 +22,11 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: sentinelops
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      managedFieldsManagers:
+        - kube-controller-manager
   syncPolicy:
     automated:
       prune: true
