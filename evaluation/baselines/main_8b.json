@@ -1,0 +1,42 @@
+{
+  "timestamp": "20260507_202001",
+  "judge_model": "llama-3.1-8b-instant",
+  "n_cases": 10,
+  "n_chunks": 2,
+  "chunk_size": 5,
+  "elapsed_sec": 0.0,
+  "scores": {
+    "faithfulness": 0.5131570701923375,
+    "answer_relevancy": 0.6563305839647022,
+    "context_precision": 0.7918055555146932,
+    "context_recall": 0.33676470588235297
+  },
+  "per_chunk": [
+    {
+      "chunk_idx": 0,
+      "start": 0,
+      "end": 5,
+      "n": 5,
+      "elapsed_sec": 746.7,
+      "scores": {
+        "faithfulness": 0.5254003993942075,
+        "answer_relevancy": 0.6838194826825855,
+        "context_precision": 0.7186111110876366,
+        "context_recall": 0.17352941176470588
+      }
+    },
+    {
+      "chunk_idx": 1,
+      "start": 5,
+      "end": 10,
+      "n": 5,
+      "elapsed_sec": 671.3,
+      "scores": {
+        "faithfulness": 0.5009137409904674,
+        "answer_relevancy": 0.6288416852468189,
+        "context_precision": 0.8649999999417499,
+        "context_recall": 0.5
+      }
+    }
+  ]
+}
