@@ -1,0 +1,37 @@
+{
+  "version": "4",
+  "groupKey": "{}:{alertname=\"HighDatabaseLatency\"}",
+  "truncatedAlerts": 0,
+  "status": "firing",
+  "receiver": "sentinelops",
+  "groupLabels": {
+    "alertname": "HighDatabaseLatency"
+  },
+  "commonLabels": {
+    "alertname": "HighDatabaseLatency",
+    "service": "checkout-api",
+    "severity": "critical"
+  },
+  "commonAnnotations": {},
+  "externalURL": "http://alertmanager:9093",
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "HighDatabaseLatency",
+        "service": "checkout-api",
+        "severity": "critical",
+        "instance": "checkout-api-7d8f9c-xyz",
+        "namespace": "observashop"
+      },
+      "annotations": {
+        "summary": "Checkout API p99 DB latency > 2s for 5m",
+        "description": "Postgres query latency on checkout-api crossed SLO; orders backing up."
+      },
+      "startsAt": "2026-05-08T12:00:00Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://prometheus:9090/graph",
+      "fingerprint": "abc123def456"
+    }
+  ]
+}
