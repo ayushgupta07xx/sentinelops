@@ -92,7 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Trivy filesystem scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
           scan-ref: .
@@ -117,10 +117,11 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-      - name: Install (dev extras)
+      - name: Install (dev extras + eval)
         run: |
           pip install --upgrade pip
           pip install -e ".[dev]"
+          pip install ragas langchain-groq langchain-huggingface sentence-transformers python-dotenv datasets
       - name: Verify eval_inputs.jsonl exists
         run: |
           if [ ! -s evaluation/golden_set/eval_inputs.jsonl ]; then
