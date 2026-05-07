@@ -59,3 +59,7 @@ volumes/
 logs/
 training/classifier/outputs/
 .modal_vllm_key.txt
+
+# Generated eval reports (baseline lives in evaluation/baselines/)
+evaluation/reports/
+evaluation/.checkpoint/
