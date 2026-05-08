@@ -1,0 +1,10 @@
+{
+  "alertname": "HighDatabaseLatency",
+  "service": "checkout-api",
+  "severity": "P1",
+  "summary": "p99 DB query latency 4.2s, breaching 500ms SLO for 12 min",
+  "labels": {
+    "region": "us-east-1",
+    "db": "orders-pg-primary"
+  }
+}
