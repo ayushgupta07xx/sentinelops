@@ -138,3 +138,27 @@ Manual 70B Batch runs trigger before model card publication
 - A future paid-tier upgrade or Batch API integration in CI
   removes the asymmetry without changing any of the code paths
   built in Week 4.
+
+  ## ADR-005 — Vite + React + TypeScript for the demo frontend (over Streamlit)
+
+**Status:** Accepted, 2026-05-08.
+
+**Context.** SentinelOps needs a clickable surface for the demo video and a reference UI for the `/triage` API. The default lazy choice for an ML demo is Streamlit — fastest to wire up, single-file, runs in the existing Python venv. Initial implementation went that direction.
+
+**Decision.** Replaced Streamlit with a Vite + React + TypeScript + Tailwind SPA before the demo recording.
+
+**Reasoning.**
+1. **Aesthetic credibility.** Streamlit's default look is recognisable as "AI-generated demo" — the sidebar shape, default fonts, default accent colours. For a project meant to read as a real internal SRE tool, this signals the wrong genre.
+2. **Skill alignment.** The resume claims React + TypeScript + Tailwind frontend experience; the demo frontend should match that claim, not contradict it.
+3. **Deployment portability.** A built React SPA is one HTML + one JS bundle — deployable to Vercel, HF Spaces, Cloudflare Pages, or as static assets behind any API gateway. Streamlit needs a Python runtime everywhere it runs.
+4. **Design discipline.** Hand-written Tailwind components carry intentional design tokens (amber accent, JetBrains Mono for technical fields, sharp corners, no gradients) that no off-the-shelf framework provides out of the box.
+
+**Consequences.**
+- The UI is a separate sub-project with its own toolchain (npm, Vite). The Python `pyproject.toml` extras are unchanged.
+- A Vite dev proxy (`/triage` → `localhost:8001`) sidesteps the WSL/Chrome localhost-bridging quirk and avoids needing CORS configuration on the FastAPI side.
+- A small CI job runs `npm ci && npm run build` on changes under `serving/ui/` to catch TypeScript regressions before merge.
+
+**Rejected alternatives.**
+- **Streamlit with heavy custom theming** — possible but the layout primitives still read as Streamlit.
+- **Single-file HTML + Tailwind CDN** — looks identical on screen, but doesn't demonstrate frontend project structure for a portfolio.
+- **shadcn/ui or another component library** — faster but the bespoke aesthetic was the point. ~440 lines of hand-rolled Tailwind components instead.
