@@ -63,3 +63,8 @@ training/classifier/outputs/
 # Generated eval reports (baseline lives in evaluation/baselines/)
 evaluation/reports/
 evaluation/.checkpoint/
+
+# Frontend (Vite + React)
+serving/ui/node_modules/
+serving/ui/dist/
+serving/ui/.vite/
