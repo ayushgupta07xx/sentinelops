@@ -8,7 +8,7 @@ If anything below diverges from observed behaviour, the [Week 4 DoD evidence](de
 
 ## Video
 
-📹 **2-minute walkthrough:** *(link goes here once recorded)*
+📹 **2-minute walkthrough:** [https://youtu.be/Yd0doUw2XG8](https://youtu.be/Yd0doUw2XG8)
 
 The video shows: chaos triggered against the upstream ObservaShop platform → Alertmanager fires → alert lands on the Kafka `alerts` topic → the LangGraph agent retrieves runbooks and drafts a postmortem → result published to `triage_results` → Grafana dashboards update in real time.
 
