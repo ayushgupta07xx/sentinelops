@@ -143,7 +143,7 @@ Code: `training/llm/`. Models: [`ayushgupta7777/sentinelops-mistral7b-merged`](h
 
 **Why not full fine-tuning.** Full fine-tuning a 7B model needs ~60 GB of GPU memory at fp16. Kaggle T4s have 16 GB. QLoRA brings this to ~12 GB on a single T4 by quantising the frozen base model to 4-bit and training only ~30 M LoRA parameters in fp16.
 
-**Why not GPT-4 / Claude via API.** Defeats the project's purpose — we want to demonstrate training, not calling. API models appear only as the LLM-as-judge grader.
+**Why not closed-API LLMs.** Defeats the project's purpose — we want to demonstrate training, not calling. API models appear only as the LLM-as-judge grader.
 
 **Post-training pipeline.** The trained LoRA adapter is merged back into the base model (giving the `-merged` repo on HF), then quantised with **AWQ 4-bit** (giving the `-awq` repo) which shrinks the 7B to ~4 GB VRAM with <1% quality loss. AWQ is what gets served by vLLM. The raw adapter is published separately so anyone with a base Mistral can apply it.
 
@@ -346,7 +346,7 @@ Every alternative considered carries a rehearsed rejection rationale. The key on
 | Snowflake | 30-day time-limited free tier. DuckDB gives identical SQL locally, forever. |
 | LangChain basic chains | Multi-step state needs a graph, not a chain. |
 | Full fine-tuning | Impossible on free compute for 7B. QLoRA is the standard alternative. |
-| GPT-4 / Claude via API | Defeats the purpose — we want to demonstrate training. |
+| Closed-API LLMs | Defeats the purpose — we want to demonstrate training. |
 | Pinecone / Weaviate / Chroma | Worse free tier or weaker operational story than Qdrant in 2025. |
 | TGI / Triton | vLLM PagedAttention is best-in-class throughput; TGI is catching up; Triton is config-heavy. |
 | Human annotators for eval | No budget. LLM-as-judge with a stronger model + small spot-check is the standard workaround. |

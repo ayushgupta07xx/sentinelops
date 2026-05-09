@@ -250,7 +250,6 @@ It is deliberately **not** a chatbot demo, **not** a closed-API wrapper, and **n
 - Cloudflare, GitHub, AWS engineering teams for publishing transparent post-event reports
 - Mistral AI for releasing Mistral-7B-Instruct under Apache 2.0
 - BAAI for the BGE embedding + reranker series
-- Anthropic for [Claude](https://claude.ai/), the build partner that paired through the architecture and most of the code
 
 ## License
 

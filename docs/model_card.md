@@ -333,7 +333,6 @@ This is engineering, not research — there is no paper. If you reference the pr
 - BAAI for the BGE embedding + reranker series.
 - Kaggle and Modal for free GPU compute.
 - Groq for free LLM-as-judge inference.
-- Anthropic for [Claude](https://claude.ai/), the build partner that paired through the architecture and most of the code.
 
 ## 12. Changelog
 

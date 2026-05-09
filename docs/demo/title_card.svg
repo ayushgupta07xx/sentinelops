@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <rect width="1920" height="1080" fill="#0a0a0a"/>
+
+  <!-- amber accent line -->
+  <rect x="320" y="510" width="80" height="3" fill="#f59e0b"/>
+
+  <!-- top-left wordmark dot + label -->
+  <circle cx="120" cy="100" r="8" fill="#f59e0b"/>
+  <text x="148" y="108"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="20" letter-spacing="6" fill="#a1a1aa">SENTINELOPS</text>
+
+  <!-- main title -->
+  <text x="320" y="600"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-weight="700" font-size="160" letter-spacing="14" fill="#fafafa">SENTINELOPS</text>
+
+  <!-- subtitle -->
+  <text x="324" y="680"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="32" fill="#a1a1aa">An agentic LLM copilot for SRE incident response.</text>
+
+  <!-- footer mono spec line -->
+  <text x="320" y="980"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="20" fill="#71717a" letter-spacing="2">Mistral-7B · QLoRA · LangGraph · Kubernetes</text>
+</svg>
