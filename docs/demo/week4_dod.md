@@ -173,5 +173,5 @@ opened:
 ✅ Eval gate blocks bad PRs (local validation; CI hits Groq TPM)
 
 Next: Week 5 — Kafka streaming, Airflow retrain DAG, drift detector,
-canonical Batch-API 70B run for the model card, demo video, resume
+canonical Batch-API 70B run for the model card and demo video
 bullets.

@@ -2,7 +2,7 @@
 
 **Target length:** 2:00–2:15 (under 2:30 absolute max — attention drops sharply after that on LinkedIn).
 
-**Frame:** SentinelOps as a real internal SRE tool, not a portfolio toy. The viewer should see (a) a working product, (b) the AI/ML behind it, (c) the operational scaffolding that makes it production-shaped.
+**Frame:** SentinelOps as a real internal SRE tool. The viewer should see (a) a working product, (b) the AI/ML behind it, (c) the operational scaffolding that makes it production-shaped.
 
 ---
 

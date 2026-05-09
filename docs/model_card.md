@@ -21,7 +21,7 @@ This card complements the [HuggingFace classifier card](https://huggingface.co/a
 
 **The model is intended as a drafting assistant for SREs writing incident postmortems.** Given a structured alert payload plus retrieved runbook chunks and historical incident summaries, it produces a postmortem skeleton with sections for root cause, impact, remediation, and learnings. The output is meant to be reviewed and edited by a human, not published unchanged.
 
-The model is also a research / portfolio artefact demonstrating end-to-end QLoRA fine-tuning, retrieval-augmented agent integration, and production-shaped MLOps deployment on free compute.
+The model also demonstrates end-to-end QLoRA fine-tuning, retrieval-augmented agent integration, and production-shaped MLOps deployment on free compute.
 
 ### Out-of-scope use
 

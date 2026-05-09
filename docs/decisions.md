@@ -17,7 +17,6 @@ the intended approach. Train the production baseline in PyTorch
 live in the repo.
 
 **Consequences:**
-- Resume/interview story: "built baseline in both frameworks; selected PyTorch
   for production after HF deprecated TF in transformers."
 - Week 5 Airflow DAG will include a TF/Keras drift-detection MLP to keep TF
   as a live, serving component of the system.
@@ -45,7 +44,7 @@ the 70B canonical.
   operational gate floor; the 70B canonical baseline is generated for the
   model card.
 - The 8B grader is slightly noisier and more lenient than the 70B; the
-  model card and resume cite the 70B number, the CI gate cites the 8B
+  model card cites the 70B number, the CI gate cites the 8B
   number. `evaluation/baselines/README.md` documents the rationale.
 
 ## ADR-002 — Two-tier eval grader (8B inner-loop, 70B canonical)
@@ -71,7 +70,7 @@ the 70B canonical.
   operational gate floor; the 70B canonical baseline is generated for the
   model card.
 - The 8B grader is slightly noisier and more lenient than the 70B; the
-  model card and resume cite the 70B number, the CI gate cites the 8B
+  model card cites the 70B number, the CI gate cites the 8B
   number. `evaluation/baselines/README.md` documents the rationale.
 
 ## ADR-003 — Truncated eval inputs for the 8B grader
@@ -149,7 +148,7 @@ Manual 70B Batch runs trigger before model card publication
 
 **Reasoning.**
 1. **Aesthetic credibility.** Streamlit's default look is recognisable as "AI-generated demo" — the sidebar shape, default fonts, default accent colours. For a project meant to read as a real internal SRE tool, this signals the wrong genre.
-2. **Skill alignment.** The resume claims React + TypeScript + Tailwind frontend experience; the demo frontend should match that claim, not contradict it.
+2. **Skill alignment.** React + TypeScript + Tailwind is the project's frontend stack; the demo UI matches it.
 3. **Deployment portability.** A built React SPA is one HTML + one JS bundle — deployable to Vercel, HF Spaces, Cloudflare Pages, or as static assets behind any API gateway. Streamlit needs a Python runtime everywhere it runs.
 4. **Design discipline.** Hand-written Tailwind components carry intentional design tokens (amber accent, JetBrains Mono for technical fields, sharp corners, no gradients) that no off-the-shelf framework provides out of the box.
 
@@ -160,5 +159,5 @@ Manual 70B Batch runs trigger before model card publication
 
 **Rejected alternatives.**
 - **Streamlit with heavy custom theming** — possible but the layout primitives still read as Streamlit.
-- **Single-file HTML + Tailwind CDN** — looks identical on screen, but doesn't demonstrate frontend project structure for a portfolio.
+- **Single-file HTML + Tailwind CDN** — looks identical on screen, but doesn't demonstrate frontend project structure.
 - **shadcn/ui or another component library** — faster but the bespoke aesthetic was the point. ~440 lines of hand-rolled Tailwind components instead.

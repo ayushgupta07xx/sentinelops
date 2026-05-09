@@ -9,7 +9,7 @@ This document explains how SentinelOps is structured, what each piece does, and 
 SentinelOps is an end-to-end MLOps system for SRE incident response. The goals — in priority order — are:
 
 1. **Demonstrate the full ML lifecycle** end to end: data ingestion → labelling → training → eval → serving → observability → retraining.
-2. **Be interview-defensible.** Every component must be explainable in two sentences, and every choice must beat its named alternatives.
+2. **Be explainable end-to-end.** Every component must be describable in two sentences, and every choice must beat its named alternatives.
 3. **Run on free compute.** Total project budget: ₹0. Every tool has a free tier that lasts the project lifetime.
 4. **Deploy on the same Kubernetes stack** used for traditional services, so the AI workload fits the existing SRE story rather than living in a parallel universe.
 
