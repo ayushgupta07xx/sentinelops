@@ -14,11 +14,24 @@ Built solo in 5 weeks on free compute. Total spend: ₹0.
 
 ---
 
-## Demo
+## 🎥 2-minute demo
 
-📹 **[2-minute walkthrough](docs/demo.md#video)** — chaos in upstream service → Alertmanager → Kafka → LangGraph agent → drafted postmortem → Grafana panels light up.
+[![SentinelOps demo](docs/demo/thumbnail.png)](https://youtu.be/Yd0doUw2XG8)
 
-![Grafana LLM dashboard](docs/demo/grafana_llm_ops.png)
+Alert in → Kafka → LangGraph agent → retrieval → fine-tuned LLM drafts the postmortem → Grafana panels light up. End-to-end in under three minutes.
+
+---
+
+## Screenshots
+
+**LLM Ops dashboard** — request rate, latency p50/p95/p99, time-to-first-token, throughput, cost
+[![LLM Ops dashboard](docs/demo/grafana_llm_ops.png)](docs/demo/grafana_llm_ops.png)
+
+**RAG & Agent Quality dashboard** — retrieval precision@5, hallucination rate, cache hit ratio, agent tool-call rate
+[![RAG quality dashboard](docs/demo/grafana_rag_quality.png)](docs/demo/grafana_rag_quality.png)
+
+**CI eval-gate** — every PR runs Ragas with an LLM-as-judge; faithfulness regression > 5 points fails the build
+[![CI eval gate failure](docs/demo/gate_ci_workflow.png)](docs/demo/gate_ci_workflow.png)
 
 ---
 
